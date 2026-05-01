@@ -1,24 +1,31 @@
 package org.atlas.flight.gateway.config;
 
-import org.springframework.boot.context.properties.ConfigurationProperties;
+import jakarta.validation.constraints.NotBlank;
 
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.validation.annotation.Validated;
+
+@Validated
 @ConfigurationProperties(prefix = "gateway.upstream")
 public class GatewayUpstreamProperties {
 
 	/**
 	 * Auth service base URL (scheme, host, port only; request path is preserved).
 	 */
-	private String auth = "http://localhost:8082";
+	@NotBlank
+	private String auth;
 
 	/**
 	 * Customer service base URL.
 	 */
-	private String customer = "http://localhost:8086";
+	@NotBlank
+	private String customer;
 
 	/**
 	 * Core-data service base URL.
 	 */
-	private String coreData = "http://localhost:8081";
+	@NotBlank
+	private String coreData;
 
 	public String getAuth() {
 		return auth;
