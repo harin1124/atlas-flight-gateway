@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: gateway
+
+server:
+  port: 8080
+
+gateway:
+  upstream:
+    auth: http://localhost:8082
+    customer: http://localhost:8086
+    core-data: http://localhost:8081
+  cors:
+    allowed-origin-patterns:
+      - "http://localhost:*"
+      - "http://127.0.0.1:*"
