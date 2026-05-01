@@ -35,9 +35,8 @@ public class GatewayConfig {
 
 	@Bean
 	public RouterFunction<ServerResponse> authRoute() {
-		// auth 모듈: context-path=/auth + @RequestMapping("/auth") → 예: POST /auth/auth/join (경로 rewrite 없음)
 		return route("auth_route")
-				.route(RequestPredicates.path("/auth/**"), http())
+				.route(RequestPredicates.path("/auth/api/**"), http())
 				.before(request -> logProxyRequest(request, "auth"))
 				.before(uri(upstream.getAuth()))
 				.build();
@@ -46,7 +45,7 @@ public class GatewayConfig {
 	@Bean
 	public RouterFunction<ServerResponse> customerRoute() {
 		return route("customer_route")
-				.route(RequestPredicates.path("/customer/**"), http())
+				.route(RequestPredicates.path("/customer/api/**"), http())
 				.before(request -> logProxyRequest(request, "customer"))
 				.before(uri(upstream.getCustomer()))
 				.build();
@@ -55,7 +54,7 @@ public class GatewayConfig {
 	@Bean
 	public RouterFunction<ServerResponse> coreDataRoute() {
 		return route("core_data_route")
-				.route(RequestPredicates.path("/core-data/**"), http())
+				.route(RequestPredicates.path("/core-data/api/**"), http())
 				.before(request -> logProxyRequest(request, "core-data"))
 				.before(uri(upstream.getCoreData()))
 				.build();
