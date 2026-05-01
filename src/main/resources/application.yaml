@@ -7,9 +7,9 @@ server:
 
 gateway:
   upstream:
-    auth: http://localhost:8082
-    customer: http://localhost:8086
-    core-data: http://localhost:8081
+    auth: http://localhost:8082/auth/api
+    customer: http://localhost:8086/customer/api
+    core-data: http://localhost:8081/core-data/api
   cors:
     allowed-origin-patterns:
       - "http://localhost:*"
